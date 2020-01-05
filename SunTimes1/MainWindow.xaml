@@ -6,7 +6,10 @@
         xmlns:local="clr-namespace:SunTimes1"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+  <Grid>
+    <StackPanel Name="DateStackPanel" 
+                Orientation="Vertical">
+      
+    </StackPanel>
+  </Grid>
 </Window>

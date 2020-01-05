@@ -26,7 +26,20 @@ namespace SunTimes1
       InitializeComponent();
 
       var location = GeographicLocation.Parse("51° 54\' 48.9024\" N, 4° 59\' 58.9812\" E");
-      var hours = DaylightHours.Calculate(2020, 1, 2, location);
+      DateTime date = new DateTime(2019, 12, 5);
+      var hours = DaylightHours.Calculate(date.Year, date.Month, date.Day, location); ;
+
+      for (int i = 0; i < 35; i++)
+      {
+        TextBlock dateTextBlock = new TextBlock()
+        {
+          Text = $"{date.ToString("yyyy-MM-dd")} {hours.SunriseTimeUtc} {hours.SunsetTimeUtc}"
+        };
+        DateStackPanel.Children.Add(dateTextBlock);
+
+        date = date.AddDays(1);
+        hours = DaylightHours.Calculate(date.Year, date.Month, date.Day, location);
+      }
     }
   }
 }
