@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SunTimes1", "SunTimes1\SunT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SunTimes2", "SunTimes2\SunTimes2.csproj", "{D7B49489-2DEA-44E1-86A0-CF6FD895DE6B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graph1", "Graph1\Graph1.csproj", "{0EBDBBF8-C299-478A-BF95-59C89C68873D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolBarTray1", "ToolBarTray1\ToolBarTray1.csproj", "{CD564FBC-C089-42EB-8B15-899ACAE1C3C2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{D7B49489-2DEA-44E1-86A0-CF6FD895DE6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7B49489-2DEA-44E1-86A0-CF6FD895DE6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7B49489-2DEA-44E1-86A0-CF6FD895DE6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EBDBBF8-C299-478A-BF95-59C89C68873D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EBDBBF8-C299-478A-BF95-59C89C68873D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EBDBBF8-C299-478A-BF95-59C89C68873D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EBDBBF8-C299-478A-BF95-59C89C68873D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD564FBC-C089-42EB-8B15-899ACAE1C3C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD564FBC-C089-42EB-8B15-899ACAE1C3C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD564FBC-C089-42EB-8B15-899ACAE1C3C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD564FBC-C089-42EB-8B15-899ACAE1C3C2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
