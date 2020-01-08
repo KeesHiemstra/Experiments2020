@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graph1", "Graph1\Graph1.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolBarTray1", "ToolBarTray1\ToolBarTray1.csproj", "{CD564FBC-C089-42EB-8B15-899ACAE1C3C2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KNMI-ImportExperiment", "KNMI-ImportExperiment\KNMI-ImportExperiment.csproj", "{FF2A26CE-6361-49B2-8D51-494FF5B4E876}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{CD564FBC-C089-42EB-8B15-899ACAE1C3C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD564FBC-C089-42EB-8B15-899ACAE1C3C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CD564FBC-C089-42EB-8B15-899ACAE1C3C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF2A26CE-6361-49B2-8D51-494FF5B4E876}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF2A26CE-6361-49B2-8D51-494FF5B4E876}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF2A26CE-6361-49B2-8D51-494FF5B4E876}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF2A26CE-6361-49B2-8D51-494FF5B4E876}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
