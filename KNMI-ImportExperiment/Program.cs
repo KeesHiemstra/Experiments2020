@@ -14,6 +14,7 @@ namespace KNMI_ImportExperiment
   class Program
   {
     static public WeatherDbContext Db { get; set; }
+    static private int RecordCount = 0;
 
     static async Task Main(string[] args)
     {
@@ -41,6 +42,7 @@ namespace KNMI_ImportExperiment
         ProcessData(data, header);
       }
 
+      Console.WriteLine($"There are {RecordCount} uploaded.");
 
       Console.Write("\nPress any key...");
       Console.ReadKey();
@@ -354,7 +356,17 @@ namespace KNMI_ImportExperiment
       }
 
       //Save the record in the database.
+      var record = Db.Reports
+        .AsNoTracking()
+        .Where(x => (x.Stn == newRecord.Stn && x.Date == newRecord.Date))
+        .Count();
 
+      if (record == 0)
+      {
+        Db.Reports.Add(newRecord);
+        Db.SaveChanges();
+        RecordCount++;
+      }
 
     }
 
