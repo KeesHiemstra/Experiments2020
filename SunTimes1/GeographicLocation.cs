@@ -2,6 +2,8 @@ using System;
 using System.Globalization;
 using System.Linq;
 
+// Original source: https://gist.github.com/RichardD2/f6b08a5791b21ac77ce7
+// Original Gist GitHub: https://gist.github.com/RichardD2
 namespace Trinet.Core
 {
   /// <summary>
