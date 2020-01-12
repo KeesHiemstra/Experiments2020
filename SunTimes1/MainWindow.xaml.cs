@@ -26,31 +26,17 @@ namespace SunTimes1
       InitializeComponent();
 
       var location = GeographicLocation.Parse("51° 54\' 48.9024\" N, 4° 59\' 58.9812\" E");
-      DateTime date = new DateTime(2019, 1, 1, 0, 0, 0, DateTimeKind.Local);
-      var hours = DaylightHours.Calculate(date, location);
+      DateTime today = DateTime.Now.AddDays(2).Date;
+      var hours = DaylightHours.Calculate(today, location);
       TimeSpan time = new TimeSpan();
-
-      for (int i = 0; i < 366; i++)
-      {
-        time += (hours.SunsetTimeUtc.Value - hours.SunriseTimeUtc.Value);
-
-        date = date.AddDays(1);
-        hours = DaylightHours.Calculate(date, location);
-      }
 
       TextBlock textBlock = new TextBlock()
       {
-        Text = time.ToString()
+        Text = $"Opkomst: {hours.SunriseUtc.Value.LocalDateTime}\nOndergang: {hours.SunsetUtc.Value.LocalDateTime}"
       };
 
       DateStackPanel.Children.Add(textBlock);
 
-      TextBlock textBlock1 = new TextBlock()
-      {
-        //Text = time.TotalDays().ToString()
-      };
-
-      DateStackPanel.Children.Add(textBlock1);
     }
 }
 }
