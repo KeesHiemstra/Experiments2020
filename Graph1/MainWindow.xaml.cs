@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Graph1.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,15 @@ namespace Graph1
   /// </summary>
   public partial class MainWindow : Window
   {
+    MainViewModel MainVM { get; set; }
+
     public MainWindow()
     {
+
       InitializeComponent();
+
+      MainVM = new MainViewModel(this);
+
     }
   }
 }
