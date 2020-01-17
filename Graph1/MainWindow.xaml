@@ -7,8 +7,17 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
   <Grid>
-    <Canvas>
-      <Line X1="0" Y1="100" X2="400" Y2="100" Stroke="Black" StrokeThickness="0.5"/>
-    </Canvas>
+    <Border Name="Anker1"
+            Width="420"
+            BorderThickness="1"
+            BorderBrush="Red"
+            Margin="10"
+            Padding="10">
+      <Canvas Width="400"
+              HorizontalAlignment="Left">
+        <Line X1="0" Y1="100" X2="400" Y2="100" Stroke="Black" StrokeThickness="0.5"/>
+      </Canvas>
+
+    </Border>
   </Grid>
 </Window>
