@@ -10,6 +10,7 @@ namespace About1.Views
   /// </summary>
   public partial class HistoryWindow : Window
   {
+
     readonly List<string> lineBuffer = new List<string>();
     readonly List<ListItem> itemBuffer = new List<ListItem>();
 
@@ -42,6 +43,7 @@ namespace About1.Views
         Assembly.GetExecutingAssembly().GetName().Version.ToString());
       DiscriptionTextBlock.Text = NameValue("",
         Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyDescriptionAttribute>().Description);
+
     }
 
     private string NameValue(string Name, string Value)
@@ -58,6 +60,7 @@ namespace About1.Views
 
     private void ShowHistory()
     {
+
       string[] history = Properties.Resources.History
         .Replace("\r\n","\n")
         .Split('\n');
@@ -171,6 +174,7 @@ namespace About1.Views
 
     private void AddParagraph()
     {
+
       var par = BufferToString();
       HistoryFlowDocument.Blocks.Add(
         new Paragraph(
