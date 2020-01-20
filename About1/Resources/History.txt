@@ -1,4 +1,6 @@
-﻿Version 1.0.5.7 (2020-01-19)
+﻿* Add a AboutBox.
+
+Version 1.0.5.7 (2020-01-19)
 * Add spelling checking.
 * Add SelectAll when OnGotFocus at numeric TextBoxes.
 * Add History window.

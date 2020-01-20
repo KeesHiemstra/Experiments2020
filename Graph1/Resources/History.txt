@@ -1,0 +1,1 @@
+﻿Build a graph of the progress the temperature.

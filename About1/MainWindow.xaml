@@ -9,6 +9,8 @@
   <Grid>
     <Menu>
       <MenuItem Header="_?">
+        <MenuItem Header="About"
+                  Click="About_Click"/>
         <MenuItem Header="History"
                   Click="MenuItem_Click"/>
       </MenuItem>
