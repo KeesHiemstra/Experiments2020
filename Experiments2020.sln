@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComboBox1", "ComboBox1\Comb
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "About1", "About1\About1.csproj", "{6CE6AF47-DA4C-4913-9605-05BB51B6A0A5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timer1", "Timer1\Timer1.csproj", "{F76E6033-053F-4200-AFC4-2A285207FE5B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{6CE6AF47-DA4C-4913-9605-05BB51B6A0A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6CE6AF47-DA4C-4913-9605-05BB51B6A0A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6CE6AF47-DA4C-4913-9605-05BB51B6A0A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F76E6033-053F-4200-AFC4-2A285207FE5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F76E6033-053F-4200-AFC4-2A285207FE5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F76E6033-053F-4200-AFC4-2A285207FE5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F76E6033-053F-4200-AFC4-2A285207FE5B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
