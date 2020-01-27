@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timer1", "Timer1\Timer1.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timer2", "Timer2\Timer2.csproj", "{AC3237C4-B3EF-4576-B070-F6D24FD0312F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtraPathExtension", "ExtraPathExtension\ExtraPathExtension.csproj", "{2B987980-7773-401E-95FA-F46134E07F1A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{AC3237C4-B3EF-4576-B070-F6D24FD0312F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC3237C4-B3EF-4576-B070-F6D24FD0312F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC3237C4-B3EF-4576-B070-F6D24FD0312F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B987980-7773-401E-95FA-F46134E07F1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B987980-7773-401E-95FA-F46134E07F1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B987980-7773-401E-95FA-F46134E07F1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B987980-7773-401E-95FA-F46134E07F1A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
