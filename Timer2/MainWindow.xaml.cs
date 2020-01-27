@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,10 +20,31 @@ namespace Timer2
   /// <summary>
   /// Interaction logic for MainWindow.xaml
   /// </summary>
-  public partial class MainWindow : Window
+  public partial class MainWindow : Window, INotifyPropertyChanged
   {
-    public DateTime CurrentTime { get; set; } = DateTime.Now;
+    private DateTime currentTime = DateTime.Now;
+    public DateTime CurrentTime 
+    { 
+      get => currentTime;
+      set
+      {
+        if (currentTime != value)
+        {
+          currentTime = value;
+          NotifyPropertyChanged("CurrentTime");
+        }
+      }
+    }
     public DispatcherTimer timer = new DispatcherTimer();
+
+    public event PropertyChangedEventHandler PropertyChanged;
+    private void NotifyPropertyChanged(string propertyName = "")
+    {
+      if (PropertyChanged != null)
+      {
+        PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+      }
+    }
 
     public MainWindow()
     {
@@ -37,12 +59,12 @@ namespace Timer2
 
     public void Timer_Tick(object sender, EventArgs e)
     {
-      CurrentTimeTextBlock.Text = DateTime.Now.ToString("HH:mm:ss");
+      CurrentTime = DateTime.Now;
     }
 
     public void StartTimer()
     {
-      timer.Interval = TimeSpan.FromMilliseconds(60000);
+      timer.Interval = TimeSpan.FromMilliseconds(1000);
       timer.IsEnabled = true;
     }
   }
