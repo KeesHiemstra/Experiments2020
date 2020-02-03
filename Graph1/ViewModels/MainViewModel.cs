@@ -7,6 +7,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Shapes;
 
 namespace Graph1.ViewModels
 {
@@ -22,6 +25,8 @@ namespace Graph1.ViewModels
 
       MainView = mainView;
 
+      PaintGraphic();
+
     }
 
     internal void PaintGraphic()
@@ -32,13 +37,74 @@ namespace Graph1.ViewModels
         string json = stream.ReadToEnd();
         Daily = JsonConvert.DeserializeObject<List<DailyReport>>(json);
       }
-      CreateTemperatureGraphic(Daily);
+      //CreateTemperatureGraphic(Daily);
+
+      MainView.Anchor1.Child = CreateTemperatureGraphic(Daily);
 
     }
 
-    private void CreateTemperatureGraphic(List<DailyReport> daily)
+    private Canvas CreateTemperatureGraphic(List<DailyReport> daily)
     {
-      throw new NotImplementedException();
+
+      decimal? minTemperature = daily
+        .Min(x => x.TN);
+      decimal? maxTemperature = daily
+        .Max(x => x.TX);
+
+      Canvas canvas = new Canvas();
+      CreateAxis(canvas, daily.Count);
+
+      return canvas;
+
+    }
+
+    private Canvas CreateAxis(Canvas canvas, int numberOfDays)
+    {
+
+      double AxisWidth = 400;
+      double DayWidth = AxisWidth / numberOfDays;
+     
+
+      //X axis
+      Line line = new Line()
+      {
+        X1 = 0,
+        Y1 = 100,
+        X2 = AxisWidth,
+        Y2 = 100,
+        StrokeThickness = 0.5,
+        Stroke = Brushes.Black
+      };
+      canvas.Children.Add(line);
+
+      //Y axis
+      line = new Line()
+      {
+        X1 = 0,
+        Y1 = 0,
+        X2 = 0,
+        Y2 = 200,
+        StrokeThickness = 0.5,
+        Stroke = Brushes.Black
+      };
+      canvas.Children.Add(line);
+
+      for (int i = 1; i < numberOfDays; i++)
+      {
+        line = new Line()
+        {
+          X1 = DayWidth * i,
+          Y1 = 95,
+          X2 = DayWidth * i,
+          Y2 = 105,
+          StrokeThickness = 0.5,
+          Stroke = Brushes.Black
+        };
+        canvas.Children.Add(line);
+      }
+
+      return canvas;
+
     }
   }
 }
