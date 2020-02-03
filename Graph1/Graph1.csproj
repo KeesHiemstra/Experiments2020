@@ -66,6 +66,7 @@
     <Compile Include="Models\DailyReport.cs" />
     <Compile Include="Models\DayWeather.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\VisualTemperatures.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
