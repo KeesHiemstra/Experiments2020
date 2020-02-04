@@ -21,10 +21,13 @@ namespace Graph1.ViewModels
     private decimal MinGraphTemp;
     private decimal MaxGraphTemp;
 
-    private double AxisHeightLocation = 100;
     private double AxisWidthOffset = 0;
     private double AxisHeight = 200;
     private double AxisWidth = 400;
+
+    private double Baseline = 100;
+    private double ScatterTemp;
+    private double ScatterDay;
 
 
     public VisualTemperatures(List<DailyReport> dailyReports)
@@ -38,14 +41,16 @@ namespace Graph1.ViewModels
     public Canvas CreateTemperatureGraphic()
     {
 
-      DetermineTemperatures();
-      CreateAxis();
+      DetermineValues();
+      DrawAxis();
+      DrawScale(Daily.Count);
+      DrawTemperatures();
 
       return GraphCanvas;
 
     }
 
-    private void DetermineTemperatures()
+    private void DetermineValues()
     {
 
       MinTemp = Daily.Min(x => x.TN);
@@ -54,24 +59,26 @@ namespace Graph1.ViewModels
       if (MaxTemp < 0) { MaxTemp = 0; }
 
       MinGraphTemp = (Math.Floor(MinTemp.Value / 5) * 5);
-      MaxGraphTemp = (Math.Floor(MaxTemp.Value / 5) * 5) + 5;
+      MaxGraphTemp = (Math.Ceiling(MaxTemp.Value / 5) * 5);
+
+      ScatterTemp = AxisHeight / (double)(Math.Abs(MaxGraphTemp) + Math.Abs(MinGraphTemp));
+      Baseline = (double)(Math.Abs(MaxGraphTemp)) * ScatterTemp;
 
     }
 
-    private void CreateAxis()
+    private void DrawAxis()
     {
 
       AxisWidth -= AxisWidthOffset;
-      AxisHeightLocation = 100;
 
       //X axis
       Line line = new Line()
       {
         X1 = AxisWidthOffset,
-        Y1 = AxisHeightLocation,
+        Y1 = Baseline,
         X2 = AxisWidthOffset + AxisWidth,
-        Y2 = AxisHeightLocation,
-        StrokeThickness = 0.5,
+        Y2 = Baseline,
+        StrokeThickness = 1.0,
         Stroke = Brushes.Black
       };
       GraphCanvas.Children.Add(line);
@@ -83,26 +90,120 @@ namespace Graph1.ViewModels
         Y1 = 0,
         X2 = 0,
         Y2 = 200,
-        StrokeThickness = 0.5,
+        StrokeThickness = 1.0,
         Stroke = Brushes.Black
       };
       GraphCanvas.Children.Add(line);
 
-      //for (int i = 1; i < numberOfDays; i++)
-      //{
-      //  line = new Line()
-      //  {
-      //    X1 = DayWidth * i,
-      //    Y1 = 95,
-      //    X2 = DayWidth * i,
-      //    Y2 = 105,
-      //    StrokeThickness = 0.5,
-      //    Stroke = Brushes.Black
-      //  };
-      //  GraphCanvas.Children.Add(line);
-      //}
+    }
+
+    private void DrawScale(int numberOfDays)
+    {
+
+      ScatterDay = (AxisWidth - AxisWidthOffset) / numberOfDays;
+      Line line;
+      for (int i = 1; i < numberOfDays; i++)
+      {
+        line = new Line()
+        {
+          X1 = ScatterDay * i,
+          Y1 = Baseline - 2.5,
+          X2 = ScatterDay * i,
+          Y2 = Baseline + 2.5,
+          StrokeThickness = 1.0,
+          Stroke = Brushes.Black
+        };
+        GraphCanvas.Children.Add(line);
+      }
+
+      for (double i = 0; i <= AxisHeight; i += ScatterTemp)
+      {
+        line = new Line()
+        {
+          X1 = AxisWidthOffset,
+          Y1 = i,
+          X2 = AxisWidthOffset + 2.5,
+          Y2 = i,
+          StrokeThickness = 1.0,
+          Stroke = Brushes.Black
+        };
+        GraphCanvas.Children.Add(line);
+      }
 
     }
 
+    private double TempToPoint(decimal Temp)
+    {
+      return Baseline - ((double)Temp * ScatterTemp);
+    }
+
+    private void DrawTemperatures()
+    {
+
+      Line line;
+      double LastDay = AxisWidthOffset;
+      double LastTemp = TempToPoint(Daily[0].TN.Value);
+
+      for (int i = 1; i < Daily.Count; i++)
+      {
+        line = new Line()
+        {
+          X1 = LastDay,
+          Y1 = LastTemp,
+          X2 = AxisWidthOffset + i * ScatterDay,
+          Y2 = TempToPoint(Daily[i].TN.Value),
+          StrokeThickness = 1.0,
+          Stroke = Brushes.Blue
+        };
+
+        LastDay = line.X2;
+        LastTemp = line.Y2;
+
+        GraphCanvas.Children.Add(line);
+      }
+
+      LastDay = AxisWidthOffset;
+      LastTemp = TempToPoint(Daily[0].TG.Value);
+
+      for (int i = 1; i < Daily.Count; i++)
+      {
+        line = new Line()
+        {
+          X1 = LastDay,
+          Y1 = LastTemp,
+          X2 = AxisWidthOffset + i * ScatterDay,
+          Y2 = TempToPoint(Daily[i].TG.Value),
+          StrokeThickness = 1.0,
+          Stroke = Brushes.Green
+        };
+
+        LastDay = line.X2;
+        LastTemp = line.Y2;
+
+        GraphCanvas.Children.Add(line);
+      }
+
+      LastDay = AxisWidthOffset;
+      LastTemp = TempToPoint(Daily[0].TX.Value);
+
+      for (int i = 1; i < Daily.Count; i++)
+      {
+        line = new Line()
+        {
+          X1 = LastDay,
+          Y1 = LastTemp,
+          X2 = AxisWidthOffset + i * ScatterDay,
+          Y2 = TempToPoint(Daily[i].TX.Value),
+          StrokeThickness = 1.0,
+          Stroke = Brushes.Red
+        };
+
+        LastDay = line.X2;
+        LastTemp = line.Y2;
+
+        GraphCanvas.Children.Add(line);
+      }
+
+    }
   }
 }
