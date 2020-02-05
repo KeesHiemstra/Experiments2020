@@ -97,13 +97,41 @@ namespace Graph1.ViewModels
 
     }
 
-    private void DrawScale(int numberOfDays)
+    private void DrawScale(int numberOfDays)  
     {
 
       ScatterDay = (AxisWidth - AxisWidthOffset) / numberOfDays;
       Line line;
       for (int i = 1; i < numberOfDays; i++)
       {
+        if (Daily[i].Date.DayOfWeek == DayOfWeek.Monday)
+        {
+          line = new Line()
+          {
+            X1 = ScatterDay * i,
+            Y1 = 0,
+            X2 = ScatterDay * i,
+            Y2 = AxisHeight,
+            StrokeThickness = 0.5,
+            Stroke = Brushes.Gray
+          };
+          GraphCanvas.Children.Add(line);
+        }
+
+        if (Daily[i].Date.Day == 1)
+        {
+          line = new Line()
+          {
+            X1 = ScatterDay * i,
+            Y1 = 0,
+            X2 = ScatterDay * i,
+            Y2 = AxisHeight,
+            StrokeThickness = 0.5,
+            Stroke = Brushes.DarkGray
+          };
+          GraphCanvas.Children.Add(line);
+        }
+
         line = new Line()
         {
           X1 = ScatterDay * i,
@@ -116,18 +144,33 @@ namespace Graph1.ViewModels
         GraphCanvas.Children.Add(line);
       }
 
-      for (double i = 0; i <= AxisHeight; i += ScatterTemp)
+      for (decimal i = MinGraphTemp; i <= MaxGraphTemp; i += 5)
       {
         line = new Line()
         {
           X1 = AxisWidthOffset,
-          Y1 = i,
+          Y1 = TempToPoint(i),
+          X2 = AxisWidth,
+          Y2 = TempToPoint(i),
+          StrokeThickness = 0.5,
+          Stroke = Brushes.Gray
+        };
+        GraphCanvas.Children.Add(line);
+      }
+
+      for (decimal i = MinGraphTemp; i <= MaxGraphTemp; i++)
+      {
+        line = new Line()
+        {
+          X1 = AxisWidthOffset,
+          Y1 = TempToPoint(i),
           X2 = AxisWidthOffset + 2.5,
-          Y2 = i,
+          Y2 = TempToPoint(i),
           StrokeThickness = 1.0,
           Stroke = Brushes.Black
         };
         GraphCanvas.Children.Add(line);
+
       }
 
     }
@@ -152,7 +195,7 @@ namespace Graph1.ViewModels
           Y1 = LastTemp,
           X2 = AxisWidthOffset + i * ScatterDay,
           Y2 = TempToPoint(Daily[i].TN.Value),
-          StrokeThickness = 1.0,
+          StrokeThickness = 0.5,
           Stroke = Brushes.Blue
         };
 
@@ -173,7 +216,7 @@ namespace Graph1.ViewModels
           Y1 = LastTemp,
           X2 = AxisWidthOffset + i * ScatterDay,
           Y2 = TempToPoint(Daily[i].TG.Value),
-          StrokeThickness = 1.0,
+          StrokeThickness = 0.5,
           Stroke = Brushes.Green
         };
 
@@ -194,7 +237,7 @@ namespace Graph1.ViewModels
           Y1 = LastTemp,
           X2 = AxisWidthOffset + i * ScatterDay,
           Y2 = TempToPoint(Daily[i].TX.Value),
-          StrokeThickness = 1.0,
+          StrokeThickness = 0.5,
           Stroke = Brushes.Red
         };
 
