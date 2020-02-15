@@ -49,17 +49,45 @@ namespace DevProjects.ViewModels
         TreeViewItem branch = new TreeViewItem()
         {
           Header = directoryInfo.Name,
+          IsExpanded = false,
           Foreground = Brushes.Black,
           FontWeight = FontWeights.Normal
         };
         if (dei.IsSolution)
         {
-          branch.FontWeight = FontWeights.Bold;
-          branch.Foreground = Brushes.Purple;
+          branch.IsExpanded = true;
         }
-        treeView.Items.Add(branch);
+
+        if (dei.IsSolution)
+        {
+          if (dei.IsTracked)
+          {
+            branch.FontWeight = FontWeights.Bold;
+          }
+          branch.Foreground = Brushes.Red;
+        }
+        if (dei.AddFolder)
+        {
+          if (dei.LastWriteTime > trackLastWriteTime)
+          {
+            trackLastWriteTime = dei.LastWriteTime;
+          }
+          branch.ToolTip = $"{dei.LastWriteTime}";
+          treeView.Items.Add(branch);
+        }
 
         CollectFolders(item, branch);
+        foreach (FileExtraInfo file in dei.Files)
+        {
+          TreeViewItem tvi = new TreeViewItem()
+          {
+            Header = file.Name,
+            FontWeight = FontWeights.Normal,
+            FontStyle = FontStyles.Italic,
+            Foreground = Brushes.Blue
+          };
+          treeView.Items.Add(tvi);
+        }
         //CollectFiles(item, branch);
       }
 
@@ -76,5 +104,30 @@ namespace DevProjects.ViewModels
       }
 
     }
+
+    private static void CollapseRecursive(TreeViewItem item)
+    {
+      // Collapse item if expanded.
+      if (item.IsExpanded)
+      {
+        item.IsExpanded = false;
+      }
+
+      // If the item has sub items...
+      if (item.Items.Count > 0)
+      {
+        // ... iterate them...
+        foreach (TreeViewItem subItem in item.Items)
+        {
+          // ... and if they themselves have sub items...
+          if (subItem.Items.Count > 0)
+          {
+            // ... collapse the sub item and its sub items.
+            CollapseRecursive(subItem);
+          }
+        }
+      }
+    }
+
   }
 }

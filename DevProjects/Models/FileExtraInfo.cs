@@ -47,6 +47,9 @@ namespace DevProjects.Models
         case "readme.md":
           AddFile = true;
           break;
+        case "history.txt":
+          AddFile = true;
+          break;
         default:
           break;
       }
