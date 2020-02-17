@@ -36,10 +36,10 @@ namespace DevProjects.ViewModels
 
     #endregion
 
-    internal void CollectFolders(string folder, TreeViewItem treeView)
+    internal void CollectFolders(string path, TreeViewItem treeView)
     {
 
-      IEnumerable<string> folders = Directory.EnumerateDirectories(folder);
+      IEnumerable<string> folders = Directory.EnumerateDirectories(path);
 
       foreach (string item in folders)
       {
@@ -68,10 +68,6 @@ namespace DevProjects.ViewModels
         }
         if (dei.AddFolder)
         {
-          if (dei.LastWriteTime > trackLastWriteTime)
-          {
-            trackLastWriteTime = dei.LastWriteTime;
-          }
           branch.ToolTip = $"{dei.LastWriteTime}";
           treeView.Items.Add(branch);
         }
