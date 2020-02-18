@@ -22,10 +22,17 @@
 
     <TreeView Name="TrackProjectsTreeView"
               Grid.Column="0"
-              Grid.Row="1">
+              Grid.Row="1"
+              Grid.RowSpan="2">
       <TreeViewItem Name="FolderTreeViewItem"
                     IsExpanded="False"/>
     </TreeView>
+
+    <Border BorderBrush="Black"
+            Margin="5"
+            Grid.Column="1"
+            Grid.Row="1">
+    </Border>
 
   </Grid>
 </Window>

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Media;
 using Track_Projects.Models;
 
 namespace Track_Projects.ViewModels
@@ -16,7 +17,7 @@ namespace Track_Projects.ViewModels
 
     private MainWindow View;
     private readonly TreeViewItem currentTreeViewItem;
-    private readonly string currentFolder = @"Z:\Dev\Banking";
+    private readonly string currentFolder = @"Z:\Dev";
 
     #endregion
 
@@ -26,7 +27,12 @@ namespace Track_Projects.ViewModels
     {
 
       View = view;
-      View.FolderTreeViewItem.Header = currentFolder;
+
+      View.FolderTreeViewItem.ToolTip = currentFolder;
+      View.FolderTreeViewItem.Tag = new FolderInfo().GetFolderInfo(currentFolder);
+      View.FolderTreeViewItem.Header = ((FolderInfo)View.FolderTreeViewItem.Tag).Name;
+      View.FolderTreeViewItem.IsExpanded = true;
+
       currentTreeViewItem = View.FolderTreeViewItem;
 
       CollectAll(currentTreeViewItem, currentFolder);
@@ -42,19 +48,46 @@ namespace Track_Projects.ViewModels
 
       foreach (string folder in folders)
       {
-        //FolderInfo folderFile = new FolderInfo();
-
-        TreeViewItem brance = new TreeViewItem()
+        TreeViewItem branch = new TreeViewItem()
         {
-          ToolTip = folder,
           Tag = new FolderInfo().GetFolderInfo(folder),
         };
-        brance.Header = ((FolderInfo)brance.Tag).Name;
+        branch.Header = ((FolderInfo)branch.Tag).Name;
+        branch.ToolTip = $"{folder} ({((FolderInfo)branch.Tag).LastWriteTime})";
 
-        treeViewItem.Items.Add(brance);
-        CollectAll(brance, folder);
+        if (((FolderInfo)branch.Tag).IsSolution)
+        {
+          branch.IsExpanded = true;
+          branch.Foreground = Brushes.Red;
+        }
+
+        if (((FolderInfo)branch.Tag).AddBranch)
+        {
+          treeViewItem.Items.Add(branch);
+        }
+
+        CollectAll(branch, folder);
+
       }
 
+      ProcessFiles(treeViewItem, ((FolderInfo)treeViewItem.Tag).EntityInfos);
+
+    }
+
+    private void ProcessFiles(TreeViewItem branch, List<EntityInfo> entityInfos)
+    {
+      foreach (EntityInfo entityInfo in entityInfos)
+      {
+        if (entityInfo.AddEntity)
+        {
+          TreeViewItem tvi = new TreeViewItem()
+          {
+            Header = entityInfo.Name,
+            ToolTip = entityInfo.LastWriteTime,
+          };
+          branch.Items.Add(tvi);
+        }
+      }
     }
   }
 }
