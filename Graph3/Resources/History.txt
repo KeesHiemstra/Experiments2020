@@ -1,0 +1,6 @@
+﻿Version 1.0.1.2 (2020-04-22)
+- Added the milestones for the temperatures.
+- Bug fix: Tested the application around 20 minutes before sunrise => Error.
+
+Version 1.0.0.1 (2020-04-21)
+- Initial version.

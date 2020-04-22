@@ -23,7 +23,7 @@ namespace Graph3.ViewModels
 		{ 
 			Background = Brushes.LightGray,
 			Width = 400,
-			Height = 200,
+			Height = 250,
 		};
 		//Temperature graph area
 		double MarginLeft;
@@ -35,10 +35,8 @@ namespace Graph3.ViewModels
 
 		//TemperatureLine (Y axis)
 		double TempLineStr;
-		double TempLineFin;
 		double TempLineScale;
 
-		int dayMinutes;
 
 		//TimeLine time points
 		DateTime DateStr;
@@ -46,7 +44,6 @@ namespace Graph3.ViewModels
 
 		decimal TempMin;
 		decimal TempMax;
-		decimal tempSpan;
 
 		public VisualTemperature(string path)
 		{
@@ -70,15 +67,11 @@ namespace Graph3.ViewModels
 			TimeLineFin = graph.Width;
 
 			TempLineStr = graph.Height - MarginBottom;
-			TempLineFin = 0;
 
 			DateStr = weather.Min(x => x.Time);
 			DateFin = weather.Max(x => x.Time);
 
-			dayMinutes = (int)(DateFin - DateStr).TotalMinutes;
-
 			TimeLineScale = (TimeLineFin - TimeLineStr) / (int)(DateFin - DateStr).TotalMinutes;
-
 
 			TempMin = Math.Floor(weather.Min(x => x.Temperature) - (decimal)0.25);
 			TempMax = Math.Ceiling(weather.Max(x => x.Temperature) + (decimal)0.25);
@@ -90,6 +83,7 @@ namespace Graph3.ViewModels
 			AddDaylight();
 			AddAxis();
 			AddTemperatures();
+			AddTemperaturesMilestones();
 
 			return graph;
 		}
@@ -138,14 +132,17 @@ namespace Graph3.ViewModels
 					sunsetTime = DateFin;
 				}
 
-				area = new Rectangle()
+				if (sunriseTime < sunsetTime)
 				{
-					Width = ((sunsetTime - sunriseTime).TotalMinutes * TimeLineScale),
-					Height = TempLineStr - 1,
-					Fill = Brushes.LightCyan,
-				};
-				graph.Children.Add(area);
-				Canvas.SetLeft(area, TimeLineStr + (sunriseTime - DateStr).TotalMinutes * TimeLineScale);
+					area = new Rectangle()
+					{
+						Width = ((sunsetTime - sunriseTime).TotalMinutes * TimeLineScale),
+						Height = TempLineStr - 1,
+						Fill = Brushes.LightCyan,
+					};
+					graph.Children.Add(area);
+					Canvas.SetLeft(area, TimeLineStr + (sunriseTime - DateStr).TotalMinutes * TimeLineScale);
+				}
 
 				date = date.AddDays(1);
 			} while (date.Date == weather.Max(x => x.Time).Date);
@@ -256,6 +253,43 @@ namespace Graph3.ViewModels
 				tempStr = tempFin;
 				timeStr = timeFin;
 			}
+		}
+
+		private void AddTemperaturesMilestones()
+		{
+			//Minimum temperature
+			graph.Children.Add(new Line()
+			{
+				X1 = TimeLineStr,
+				Y1 = TempLineStr - (double)(weather.Min(x => x.Temperature) - TempMin) * TempLineScale,
+				X2 = TimeLineStr + (weather.Last().Time - DateStr).TotalMinutes * TimeLineScale,
+				Y2 = TempLineStr - (double)(weather.Min(x => x.Temperature) - TempMin) * TempLineScale,
+				StrokeThickness = 0.5,
+				Stroke = Brushes.Green,
+			});
+
+			//Maximum temperature
+			graph.Children.Add(new Line()
+			{
+				X1 = TimeLineStr,
+				Y1 = TempLineStr - (double)(weather.Max(x => x.Temperature) - TempMin) * TempLineScale,
+				X2 = TimeLineStr + (weather.Last().Time - DateStr).TotalMinutes * TimeLineScale,
+				Y2 = TempLineStr - (double)(weather.Max(x => x.Temperature) - TempMin) * TempLineScale,
+				StrokeThickness = 0.5,
+				Stroke = Brushes.Green,
+			});
+
+			//Current temperature
+			graph.Children.Add(new Line()
+			{
+				X1 = TimeLineStr,
+				Y1 = TempLineStr - (double)(weather.Last().Temperature - TempMin) * TempLineScale,
+				X2 = TimeLineStr + (weather.Last().Time - DateStr).TotalMinutes * TimeLineScale,
+				Y2 = TempLineStr - (double)(weather.Last().Temperature - TempMin) * TempLineScale,
+				StrokeThickness = 0.5,
+				Stroke = Brushes.Blue,
+			});
+
 		}
 
 	}
