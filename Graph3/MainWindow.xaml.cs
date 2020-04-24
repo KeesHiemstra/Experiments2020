@@ -21,13 +21,13 @@ namespace Graph3
   /// </summary>
   public partial class MainWindow : Window
   {
-    public VisualTemperature visualTemperature { get; set; }
+    public VisualTemperatureOfLast24Hour visualTemperature { get; set; }
 
     public MainWindow()
     {
       InitializeComponent();
 
-      visualTemperature = new VisualTemperature("%OneDrive%\\Data\\DailyWeather\\DayWeather.json");
+      visualTemperature = new VisualTemperatureOfLast24Hour("%OneDrive%\\Data\\DailyWeather\\DayWeather.json");
 
       VisualGrid.Children.Add(visualTemperature.CreateVisualTemperature());
     }

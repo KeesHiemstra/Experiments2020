@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -15,7 +16,7 @@ using WeatherDemon.Models;
 
 namespace Graph3.ViewModels
 {
-	public class VisualTemperature
+	public class VisualTemperatureOfLast24Hour
 	{
 		List<DayWeather> weather { get; set; }
 
@@ -45,7 +46,7 @@ namespace Graph3.ViewModels
 		decimal TempMin;
 		decimal TempMax;
 
-		public VisualTemperature(string path)
+		public VisualTemperatureOfLast24Hour(string path)
 		{
 			weather = new List<DayWeather>();
 			string jsonPath = path.TranslatePath();
@@ -235,7 +236,7 @@ namespace Graph3.ViewModels
 			decimal tempFin;
 			TimeSpan timeStr = weather[0].Time - DateStr;
 			TimeSpan timeFin;
-			for (int i = 1; i < weather.Count; i++)
+			for (int i = 0; i < weather.Count; i++)
 			{
 				tempFin = weather[i].Temperature;
 				timeFin = weather[i].Time - DateStr;
@@ -249,6 +250,17 @@ namespace Graph3.ViewModels
 					StrokeThickness = 1,
 					Stroke = Brushes.Black,
 				});
+
+				Rectangle area = new Rectangle()
+				{
+					Width = 4,
+					Height = 4,
+					Fill = Brushes.Transparent,
+					ToolTip = $"time: {weather[i].Time:dd HH:mm}\ntemp: {weather[i].Temperature}\u00b0C",
+				};
+				graph.Children.Add(area);
+				Canvas.SetLeft(area, TimeLineStr + timeStr.TotalMinutes * TimeLineScale - 2);
+				Canvas.SetTop(area, TempLineStr - (double)(tempStr - TempMin) * TempLineScale - 2);
 
 				tempStr = tempFin;
 				timeStr = timeFin;

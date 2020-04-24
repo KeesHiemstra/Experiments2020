@@ -1,4 +1,8 @@
-﻿Version 1.0.1.2 (2020-04-22)
+﻿Version 1.0.2.3 (2020-04-23)
+- Added ToolTip of the time and temperature.
+- Renamed the Namespace VisualTemperature to VisualTemperatureOfLast24Hour.
+
+Version 1.0.1.2 (2020-04-22)
 - Added the milestones for the temperatures.
 - Bug fix: Tested the application around 20 minutes before sunrise => Error.
 

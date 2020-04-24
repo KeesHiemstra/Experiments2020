@@ -60,7 +60,7 @@
     </ApplicationDefinition>
     <Compile Include="ViewModels\DaylightHours.cs" />
     <Compile Include="ViewModels\GeographicLocation.cs" />
-    <Compile Include="ViewModels\VisualTemperature.cs" />
+    <Compile Include="ViewModels\VisualTemperatureOfLast24Hour.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
