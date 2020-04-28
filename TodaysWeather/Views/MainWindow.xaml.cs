@@ -42,8 +42,8 @@ namespace TodaysWeather
       if (!CanClose)
       {
         ShowInTaskbar = !ShowInTaskbar;
-        
         e.Cancel = true;
+        MainVM.Hide();
         return;
       }
       SysTray.Close();

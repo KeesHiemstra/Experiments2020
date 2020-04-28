@@ -43,6 +43,7 @@
       this.notifyIconSysTray.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIconSysTray.Icon")));
       this.notifyIconSysTray.Text = "Todays weather";
       this.notifyIconSysTray.Visible = true;
+      this.notifyIconSysTray.MouseClick += new System.Windows.Forms.MouseEventHandler(this.notifyIconSysTray_MouseClick);
       // 
       // contextMenuStripSysTray
       // 

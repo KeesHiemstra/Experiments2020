@@ -15,6 +15,9 @@ namespace TodaysWeather.ModelViews
       MainView = mainView;
     }
 
-
+    internal void Hide()
+    {
+      MainView.Hide();
+    }
   }
 }

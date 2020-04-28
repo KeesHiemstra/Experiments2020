@@ -18,6 +18,7 @@ namespace Graph3.ViewModels
 {
 	public class VisualTemperatureOfLast24Hour
 	{
+		#region [ Fields ]
 		List<DayWeather> weather { get; set; }
 
 		static Canvas graph = new Canvas() 
@@ -38,13 +39,13 @@ namespace Graph3.ViewModels
 		double TempLineStr;
 		double TempLineScale;
 
-
 		//TimeLine time points
 		DateTime DateStr;
 		DateTime DateFin;
 
 		decimal TempMin;
 		decimal TempMax;
+		#endregion
 
 		public VisualTemperatureOfLast24Hour(string path)
 		{

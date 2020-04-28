@@ -26,5 +26,11 @@ namespace TodaysWeather.Views
       MainView.Close();
       Close();
     }
+
+    private void notifyIconSysTray_MouseClick(object sender, MouseEventArgs e)
+    {
+      MainView.Visibility = System.Windows.Visibility.Visible;
+      MainView.ShowInTaskbar = true;
+    }
   }
 }
