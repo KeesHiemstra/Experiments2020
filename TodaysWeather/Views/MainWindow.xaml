@@ -3,14 +3,74 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TodaysWeather"
+        xmlns:local="clr-namespace:TodaysWeather.Models"
         mc:Ignorable="d"
         Closing="Window_Closing"
         Loaded="Window_Loaded"
         Title="Todays weather"
         Height="450" 
         Width="800">
-  <Grid>
+  <Grid Margin="5">
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="Auto" />
+      <ColumnDefinition Width="Auto" />
+      <ColumnDefinition Width="Auto" />
+      <ColumnDefinition Width="Auto" />
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+    </Grid.RowDefinitions>
+    
+    <Menu Name="MainMenu"
+          Margin="-5,-5,-5,5"
+          Grid.ColumnSpan="4"
+          Grid.Row="0">
+      <MenuItem Name="ExitMain"
+                Header="E_xit"
+                Click="ExitMain_Click"/>
+      <MenuItem Name="SettingMenu"
+                Header="_Settings">
+        <MenuItem Name="CanCloseWindowMenu"
+                  Header="_Close window"
+                  IsCheckable="True"
+                  IsChecked="{Binding Settings.CanCloseWindow}"/>
+      </MenuItem>
+    </Menu>
+
+    <TextBlock Text="{Binding }"/>
+
+    <StackPanel Name="Daylight" 
+                Orientation="Vertical" 
+                Grid.ColumnSpan="2"
+                Grid.Column="3"
+                Grid.Row="1">
+      <StackPanel Orientation="Horizontal">
+        <TextBlock Text="Sunrise: "/>
+        <TextBlock Text="{Binding MainVM.SunriseTime, StringFormat=HH:mm}"/>
+      </StackPanel>
+      <StackPanel Orientation="Horizontal">
+        <TextBlock Text="Sunset:  "/>
+        <TextBlock Text="{Binding MainVM.SunsetTime, StringFormat=HH:mm}"/>
+      </StackPanel>
+    </StackPanel>
+
+    <Button Name="Refresh"
+            Content="_Refresh"
+            Width="75"
+            Grid.ColumnSpan="4"
+            Grid.Row="12"/>
 
   </Grid>
 </Window>

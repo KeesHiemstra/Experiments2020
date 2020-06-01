@@ -1,4 +1,7 @@
-﻿Version 0.0.0.2 (2020-04-28)
+﻿Version 0.0.0.3
+
+
+Version 0.0.0.2 (2020-04-28)
 * Closing the window will be hidden, clicking on the icon will the window visible.
 
 Version 0.0.0.1 (2020-03-29)

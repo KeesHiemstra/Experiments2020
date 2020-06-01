@@ -22,7 +22,7 @@ namespace TodaysWeather.Views
 
     private void exitToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      MainView.CanClose = true;
+      MainView.Settings.CanCloseWindow = true;
       MainView.Close();
       Close();
     }

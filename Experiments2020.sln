@@ -43,6 +43,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodaysWeather", "TodaysWeat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graph3", "Graph3\Graph3.csproj", "{47EE5FA8-1F80-4C2C-BE99-C50DF42774A1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Directory1", "Directory1\Directory1.csproj", "{4336F5C2-D90F-48C5-9DEC-0D4C67717463}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -129,6 +131,10 @@ Global
 		{47EE5FA8-1F80-4C2C-BE99-C50DF42774A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{47EE5FA8-1F80-4C2C-BE99-C50DF42774A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{47EE5FA8-1F80-4C2C-BE99-C50DF42774A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4336F5C2-D90F-48C5-9DEC-0D4C67717463}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4336F5C2-D90F-48C5-9DEC-0D4C67717463}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4336F5C2-D90F-48C5-9DEC-0D4C67717463}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4336F5C2-D90F-48C5-9DEC-0D4C67717463}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
