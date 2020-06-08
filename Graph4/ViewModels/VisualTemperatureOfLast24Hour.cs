@@ -15,7 +15,7 @@ using Trinet.Core;
 
 using WeatherDemon.Models;
 
-namespace Graph3.ViewModels
+namespace Graph4.ViewModels
 {
   public class VisualTemperatureOfLast24Hour
 	{
@@ -112,11 +112,11 @@ namespace Graph3.ViewModels
 
 			//Read the stored Open Weather location json
 			GeographicLocation location;
-			string jsonPath = "%OneDrive%\\Etc\\DemonOpenWeather.json".TranslatePath();
+			string jsonPath = "%OneDrive%\\Etc\\DemonOpenWeather.json".TranslatePath(); 
 			using (StreamReader stream = File.OpenText(jsonPath))
 			{
 				string json = stream.ReadToEnd();
-				location = JsonConvert.DeserializeObject<GeographicLocation>(json);
+				location = JsonConvert.DeserializeObject <GeographicLocation>(json);
 			}
 
 			DateTime date = DateStr.Date.AddHours(2);
@@ -240,7 +240,7 @@ namespace Graph3.ViewModels
 		}
 
 		private void AddGraphTitle()
-		{
+    {
 			TextBlock text = new TextBlock()
 			{
 				Text = $"Temperature period {DateStr:yyyy-MM-dd HH:mm} - {DateFin:yyyy-MM-dd HH:mm}",
@@ -249,7 +249,7 @@ namespace Graph3.ViewModels
 			graph.Children.Add(text);
 			Canvas.SetLeft(text, MarginLeft * 2);
 			Canvas.SetTop(text, 5);
-		}
+    }
 
 		private void AddTemperatures()
 		{
@@ -262,7 +262,7 @@ namespace Graph3.ViewModels
 				tempFin = Weather[i].Temperature;
 				timeFin = Weather[i].Time - DateStr;
 
-				graph.Children.Add(new Line()
+				graph.Children.Add(new Line() 
 				{
 					X1 = TimeLineStr + timeStr.TotalMinutes * TimeLineScale,
 					Y1 = TempLineStr - (double)(tempStr - TempMin) * TempLineScale,
