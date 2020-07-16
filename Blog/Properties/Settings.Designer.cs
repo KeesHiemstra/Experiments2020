@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MasterDetails1.Properties
+namespace Blog.Properties
 {
 
 

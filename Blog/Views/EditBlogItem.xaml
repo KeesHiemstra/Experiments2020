@@ -1,0 +1,119 @@
+﻿<Window x:Class="Blog.Views.EditBlogItem"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Blog.Views"
+        mc:Ignorable="d"
+        Title="Blog" Height="450" Width="800">
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="Auto"/>
+      <ColumnDefinition Width="*"/>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/> <!-- Menu -->
+      <RowDefinition Height="Auto"/> <!-- Id -->
+      <RowDefinition Height="Auto"/> <!-- Date -->
+      <RowDefinition Height="Auto"/> <!-- Title -->
+      <RowDefinition Height="Auto"/> <!-- Summary -->
+      <RowDefinition Height="Auto"/> <!-- Subject -->
+      <RowDefinition Height="*"/>    <!-- Text -->
+      <RowDefinition Height="Auto"/> <!-- Attachment -->
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
+
+    <Menu Grid.ColumnSpan="2"
+          Grid.Column="0" Grid.Row="0">
+      
+    </Menu>
+
+    <TextBlock Text="Id:"
+               Margin="5,0,5,5"
+               Grid.Column="0" Grid.Row="1"/>
+
+    <TextBlock Text="Date:"
+               Margin="5,0,5,5"
+               Grid.Column="0" Grid.Row="2"/>
+
+    <TextBlock Text="Title:"
+               Margin="5,0,5,5"
+               Grid.Column="0" Grid.Row="3"/>
+
+    <TextBlock Text="Summary:"
+               Margin="5,0,5,5"
+               Grid.Column="0" Grid.Row="4"/>
+
+    <TextBlock Text="Subject:"
+               Margin="5,0,5,5"
+               Grid.Column="0" Grid.Row="5"/>
+
+    <TextBlock Text="Text:"
+               Margin="5,0,5,5"
+               Grid.Column="0" Grid.Row="6"/>
+
+    <TextBlock Text="Attachment:"
+               Margin="5,0,5,5"
+               Grid.Column="0" Grid.Row="7"/>
+
+    <StackPanel Orientation="Horizontal"
+                Margin="0,5,5,5"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Grid.ColumnSpan="2"
+                Grid.Column="0" Grid.Row="8">
+      
+      <Button Name="SaveButton"
+              Content="Save"
+              Click="SaveButton_Click"
+              Width="75"
+              Height="21"
+              Margin="5,0,0,0"/>
+      
+      <Button Name="CancelButton"
+              Content="Cancel"
+              Click="CancelButton_Click"
+              Width="75"
+              Height="21"
+              Margin="5,0,0,0"/>
+    </StackPanel>
+
+    <StatusBar Grid.ColumnSpan="2"
+               Grid.Column="0" Grid.Row="9">
+      <StatusBarItem>
+        
+      </StatusBarItem>
+      <StackPanel Orientation="Horizontal">
+        <TextBlock Text="Blogs title: "/>
+        <TextBlock Text="{Binding Config.Title}"/>
+      </StackPanel>
+      <StatusBarItem>
+        <StackPanel Orientation="Horizontal">
+          <TextBlock Text="ID: "/>
+          <TextBlock Text="{Binding Id}"/>
+        </StackPanel>
+      </StatusBarItem>
+    </StatusBar>
+
+    <TextBlock Text="{Binding Id}"
+               Grid.Column="1" Grid.Row="1"/>
+
+    <DatePickerTextBox Text="{Binding Date, StringFormat=yyyy-MM-dd HH:mm, Mode=TwoWay}"
+                       Grid.Column="1" Grid.Row="2"/>
+
+    <TextBox Text="{Binding Title}"
+             Grid.Column="1" Grid.Row="3"/>
+
+    <TextBox Text="{Binding Summary}"
+             Grid.Column="1" Grid.Row="4"/>
+
+    <ListBox Grid.Column="1" Grid.Row="5"/>
+
+    <TextBox Text="{Binding BlogText}"
+             Grid.Column="1" Grid.Row="6"/>
+
+    <ListBox Grid.Column="1" Grid.Row="7"/>
+
+  </Grid>
+</Window>

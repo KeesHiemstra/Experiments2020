@@ -1,0 +1,5 @@
+﻿Version 1.0.0.0 ()
+* Remember the location and size of the main window.
+* Added Menu in MainWindow.
+* Added Configuration.
+* Initial version.
