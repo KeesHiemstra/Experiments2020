@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace DateTime1
 {
@@ -20,6 +17,7 @@ namespace DateTime1
 
       for (int i = 0; i < 7; i++)
       {
+        Debug.Assert(dateTime.IsDaylightSavingTime(), "Daylight saving time");
         Console.WriteLine(dateTime.AddDays(i).ToLocalTime());
       }
 
