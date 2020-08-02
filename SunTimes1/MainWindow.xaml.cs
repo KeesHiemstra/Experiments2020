@@ -28,7 +28,6 @@ namespace SunTimes1
       var location = GeographicLocation.Parse("51° 54\' 48.9024\" N, 4° 59\' 58.9812\" E");
       DateTime today = DateTime.Now.AddDays(2).Date;
       var hours = DaylightHours.Calculate(today, location);
-      TimeSpan time = new TimeSpan();
 
       TextBlock textBlock = new TextBlock()
       {
