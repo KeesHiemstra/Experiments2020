@@ -27,6 +27,7 @@ namespace ComboBox1
       InitializeComponent();
 
       Names.Add(new Person() { FirstName = "Kees", LastName = "Hiemstra" });
+      Names.Add(new Person() { FirstName = "Dirk", LastName = "Hiemstra" });
 
       ComboBox1.ItemsSource = Names;
       ComboBox1.SelectedIndex = 0;

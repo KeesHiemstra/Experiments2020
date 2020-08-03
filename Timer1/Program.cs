@@ -41,7 +41,7 @@ namespace Timer1
 
     public static void CLog(string Message)
     {
-      Console.WriteLine($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")} {Message}");
+      Console.WriteLine($"{DateTime.Now:yyyy-MM-dd HH:mm:ss} {Message}");
     }
   }
 }
