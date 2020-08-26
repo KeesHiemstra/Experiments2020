@@ -45,6 +45,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Switch1", "Switch1\Switch1.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeTalkingClock", "TimeTalkingClock\TimeTalkingClock.csproj", "{0EBF73F9-BBBD-4E36-A9C8-F39309D1AB29}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timer2", "Timer2\Timer2.csproj", "{23D729FD-F603-4056-A5D8-057B3865497B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -135,6 +137,10 @@ Global
 		{0EBF73F9-BBBD-4E36-A9C8-F39309D1AB29}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0EBF73F9-BBBD-4E36-A9C8-F39309D1AB29}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0EBF73F9-BBBD-4E36-A9C8-F39309D1AB29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23D729FD-F603-4056-A5D8-057B3865497B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23D729FD-F603-4056-A5D8-057B3865497B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23D729FD-F603-4056-A5D8-057B3865497B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23D729FD-F603-4056-A5D8-057B3865497B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,18 +1,33 @@
 ﻿using Microsoft.Win32;
 
 using System;
+using System.Security.AccessControl;
+using System.Threading;
 
 namespace OnPowerChange1
 {
   class Program
   {
+    public Timer Timer;
+
     static void Main(string[] args)
     {
+      Log("Starting OnPowerChange1");
       Test();
 
-      Console.Write("\nPress any key...");
-      Console.ReadKey();
+      //Timer = new Timer()
+
+      ConsoleKeyInfo key;
+			do
+			{
+        key = Console.ReadKey();
+			} while (key.Key != ConsoleKey.Q);
     }
+
+    private static void Log(string message)
+		{
+			Console.WriteLine($"{DateTime.Now:yyyy-MM-dd HH:mm:ss.ffffff} {message}");
+		}
 
     private static void Test()
     {
@@ -24,16 +39,13 @@ namespace OnPowerChange1
       switch (e.Mode)
       {
         case PowerModes.Resume:
-          Console.WriteLine("Resume");
+          Log("Resume");
           break;
         case PowerModes.StatusChange:
-          Console.WriteLine("StatusChange");
+          Log("StatusChange");
           break;
         case PowerModes.Suspend:
-          Console.WriteLine("Suspend");
-          break;
-        default:
-          Console.WriteLine("Default");
+          Log("Suspend");
           break;
       }
     }

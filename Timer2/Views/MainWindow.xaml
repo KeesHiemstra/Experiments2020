@@ -1,0 +1,36 @@
+﻿<Window x:Class="Timer2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Timer2"
+        mc:Ignorable="d"
+        Loaded="Window_Loaded"
+        Title="MainWindow" Height="450" Width="800">
+  <Grid Margin="10">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+
+    <StackPanel Orientation="Horizontal">
+      <TextBlock Text="TimeLastWrite: "/>
+      <TextBlock Text="{Binding CurrentWeathers.TimeLastWrite, StringFormat=yyyy-MM-dd HH:mm:ss}"/>
+    </StackPanel>
+
+    <StackPanel Name="LogStackPanel" 
+                Orientation="Vertical"
+                Grid.Row="11">
+    </StackPanel>
+  </Grid>
+</Window>
