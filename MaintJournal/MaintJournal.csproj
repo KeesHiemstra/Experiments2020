@@ -76,9 +76,17 @@
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\Journal.cs" />
     <Compile Include="Models\JournalDbContext.cs" />
+    <Compile Include="ViewModels\LogRecordViewModel.cs" />
+    <Compile Include="Views\LogRecordWindow.cs">
+      <DependentUpon>LogRecordWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\OptionsWindow.xaml.cs">
       <DependentUpon>OptionsWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\LogRecordWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
