@@ -1,2 +1,5 @@
-﻿Version 1.0.0.0 (2020-09-17)
+﻿Version 1.0.0.1 (2020-09-18)
+* Filter implemented.
+
+Version 1.0.0.0 (2020-09-17)
 * Initial version.

@@ -81,5 +81,25 @@ namespace MaintJournal
 		{
 			VM.UpdateDatabaseConnection();
 		}
+
+		private void ApplyButton_Click(object sender, RoutedEventArgs e)
+		{
+			VM.ApplyFilter();
+		}
+
+		private void ClearButton_Click(object sender, RoutedEventArgs e)
+		{
+			VM.ClearFilter();
+		}
+
+		private void GotoButton_Click(object sender, RoutedEventArgs e)
+		{
+			VM.GotoFilter();
+		}
+
+		private void FilterBorden_KeyUp(object sender, KeyEventArgs e)
+		{
+			VM.Keyboard(sender, e);
+		}
 	}
 }

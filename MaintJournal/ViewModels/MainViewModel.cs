@@ -10,11 +10,14 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data.Entity;
+using System.Dynamic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace MaintJournal.ViewModels
 {
@@ -30,7 +33,9 @@ namespace MaintJournal.ViewModels
 		#region [ Properties ]
 
 		public OptionsViewModel Options { get; set; }
-		public ObservableCollection<Journal> Journals = new ObservableCollection<Journal>();
+		public ObservableCollection<Journal> Journals { get; set; } = new ObservableCollection<Journal>();
+		public ObservableCollection<Journal> Filtered { get; set; } = new ObservableCollection<Journal>();
+//		public List<string> JournalEvents = new List<string>();
 
 		public int JournalsCount
 		{
@@ -46,8 +51,10 @@ namespace MaintJournal.ViewModels
 			View = mainWindow;
 			Options = new OptionsViewModel();
 			OpenOptions();
-			GetJournal();
+			GetJournals();
 			View.MainDataGrid.ItemsSource = Journals;
+			GetJournalEvents();
+			View.FilterMessageTextBox.Focus();
 		}
 
 		#endregion
@@ -120,6 +127,69 @@ namespace MaintJournal.ViewModels
 				MessageBoxImage.Information);
 		}
 
+		internal void Keyboard(object sender, KeyEventArgs e)
+		{
+			if (sender == null) { return; }
+			if (e.Key == Key.Enter)
+			{
+				ApplyFilter();
+			}
+		}
+
+		internal void ApplyFilter()
+		{
+			List<Journal> filtered = new List<Journal>();
+
+			View.MainDataGrid.ItemsSource = null;
+
+			switch (View.FilterEventListBox.SelectedIndex)
+			{
+				case 0:
+					filtered = Journals
+						.ToList();
+					break;
+				case 1:
+					filtered = Journals
+						.Where(x => string.IsNullOrEmpty(x.Event))
+						.ToList();
+					break;
+				case 2:
+					filtered = Journals
+						.Where(x => !string.IsNullOrEmpty(x.Event))
+						.ToList();
+					break;
+				default:
+					filtered = Journals
+						.Where(x => x.Event == View.FilterEventListBox.SelectedItem.ToString())
+						.ToList();
+					break;
+			}
+
+			if (!string.IsNullOrEmpty(View.FilterMessageTextBox.Text))
+			{
+				filtered = filtered
+					.Where(x => x.Message
+						.ToLower()
+						.Contains(View.FilterMessageTextBox.Text.ToLower()))
+					.ToList();
+			}
+
+			Filtered = new ObservableCollection<Journal>(filtered);
+			View.MainDataGrid.ItemsSource = Filtered;
+		}
+
+		internal void ClearFilter()
+		{
+			View.MainDataGrid.ItemsSource = null;
+			View.MainDataGrid.ItemsSource = Journals;
+			Filtered = null;
+		}
+
+		internal void GotoFilter()
+		{
+			throw new NotImplementedException();
+		}
+
 		internal void CloseWindow()
 		{
 			Log.Write("Closing Journal");
@@ -128,19 +198,58 @@ namespace MaintJournal.ViewModels
 		internal void UpdateDatabaseConnection()
 		{
 			View.MainDataGrid.ItemsSource = null;
-			GetJournal();
+			GetJournals();
 			View.MainDataGrid.ItemsSource = Journals;
 			Log.Write($"Connection is changed to {Options.DbName}");
 		}
 
-		private void GetJournal()
+		private void GetJournals()
 		{
+			//Use the table
 			using JournalDbContext db = new JournalDbContext(Options.DbConnection);
+
+			//Prepare the collection
 			List<Journal> journals = (from j in db.Journals
 																orderby j.DTStart descending, j.DTCreation descending
 																select j).ToList();
+
+			//Get the collection
 			Journals = new ObservableCollection<Journal>(journals);
 			Log.Write("Loaded Journal table");
+		}
+
+		private void GetJournalEvents()
+		{
+			View.FilterEventListBox.Items.Clear();
+
+			//Add predefined items
+			View.FilterEventListBox.Items.Add(new TextBlock() 
+			{ 
+				Text = "< all >",
+				FontStyle = FontStyles.Italic,
+			});
+			View.FilterEventListBox.Items.Add(new TextBlock()
+			{
+				Text = "< empty >",
+				FontStyle = FontStyles.Italic,
+			});
+			View.FilterEventListBox.Items.Add(new TextBlock()
+			{
+				Text = "< not empty >",
+				FontStyle = FontStyles.Italic,
+			});
+
+			//Add items from all unique events
+			foreach (string item in Journals
+				.Where(x => !string.IsNullOrEmpty(x.Event))
+				.Select(x => x.Event)
+				.Distinct()
+				.OrderBy(x => x)
+				.ToList())
+			{
+				View.FilterEventListBox.Items.Add(item);
+			}
+			View.FilterEventListBox.SelectedIndex = 0;
 		}
 
 	}

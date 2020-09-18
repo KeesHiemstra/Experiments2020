@@ -65,6 +65,46 @@
       <StatusBarItem/>
     </StatusBar>
 
+    <Border Name="FilterBorden"
+            Background="LightGray"
+            KeyUp="FilterBorden_KeyUp"
+            Grid.Row="1">
+      <StackPanel Orientation="Vertical"
+                  Margin="5,5,5,5">
+        <StackPanel Orientation="Horizontal">
+          <TextBlock Text="Message: "
+                     VerticalAlignment="Center"/>
+          <TextBox Name="FilterMessageTextBox"
+                   Width="150"
+                   Margin="0,0,10,0"/>
+          
+          <TextBlock Text="Event: "
+                     VerticalAlignment="Center"/>
+          <ComboBox Name="FilterEventListBox"
+                    IsEditable="False"
+                    IsReadOnly="True"
+                    Margin="0,0,10,0"
+                    Width="250"/>
+          
+          <Button Name="ApplyButton"
+                  Content="Filter"
+                  Click="ApplyButton_Click"
+                  Width="40"
+                  Margin="0,0,10,0"/>
+          <Button Name="ClearButton"
+                  Content="Clear"
+                  Click="ClearButton_Click"
+                  Width="40"
+                  Margin="0,0,10,0"/>
+          <Button Name="GotoButton"
+                  Content="Goto"
+                  Click="GotoButton_Click"
+                  Width="40"
+                  Margin="0,0,10,0"
+                  Visibility="Hidden"/>
+        </StackPanel>
+      </StackPanel>
+    </Border>
 
     <DataGrid Name="MainDataGrid" 
               AutoGenerateColumns="False"
