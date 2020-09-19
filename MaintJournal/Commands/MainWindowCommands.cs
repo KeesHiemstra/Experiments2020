@@ -37,5 +37,12 @@ namespace MaintJournal.Commands
 				}
 			);
 
+		public static readonly RoutedUICommand ReportOpenedArticles = new RoutedUICommand
+			(
+				"_Opened articles",
+				"ReportOpenedArticles",
+				typeof(MainWindowCommands),
+				new InputGestureCollection() { }
+			);
 	}
 }

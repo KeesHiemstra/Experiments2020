@@ -72,6 +72,21 @@ namespace MaintJournal
 		}
 		#endregion
 
+		#region ReportOpenedArticles
+
+		private void CommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+		{
+			e.CanExecute = VM.Journals
+				.Count(x => x.Event == "Aangebroken") > 0;
+		}
+
+		private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+		{
+			VM.ReportOpenedArticles();
+		}
+
+		#endregion
+
 		private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
 		{
 			VM.CloseWindow();

@@ -25,6 +25,10 @@
       CanExecute="BackupCommand_CanExecute"
       Command="cmd:MainWindowCommands.Backup"
       Executed="BackupCommand_Execute" />
+    <CommandBinding
+      CanExecute="CommandBinding_CanExecute"
+      Command="cmd:MainWindowCommands.ReportOpenedArticles"
+      Executed="CommandBinding_Executed"/>
   </Window.CommandBindings>
   
   <Grid>
@@ -45,6 +49,9 @@
         <MenuItem Command="cmd:MainWindowCommands.Backup" />
         <Separator />
         <MenuItem Command="cmd:MainWindowCommands.Exit" />
+      </MenuItem>
+      <MenuItem Header="_Reports">
+        <MenuItem Command="cmd:MainWindowCommands.ReportOpenedArticles"/>
       </MenuItem>
     </Menu>
 

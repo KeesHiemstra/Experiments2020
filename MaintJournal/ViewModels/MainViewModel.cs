@@ -35,7 +35,7 @@ namespace MaintJournal.ViewModels
 		public OptionsViewModel Options { get; set; }
 		public ObservableCollection<Journal> Journals { get; set; } = new ObservableCollection<Journal>();
 		public ObservableCollection<Journal> Filtered { get; set; } = new ObservableCollection<Journal>();
-//		public List<string> JournalEvents = new List<string>();
+		//		public List<string> JournalEvents = new List<string>();
 
 		public int JournalsCount
 		{
@@ -125,6 +125,12 @@ namespace MaintJournal.ViewModels
 				"Backup",
 				MessageBoxButton.OK,
 				MessageBoxImage.Information);
+		}
+
+		internal void ReportOpenedArticles()
+		{
+			OpenedArticlesViewModel report = new OpenedArticlesViewModel(this);
+			report.ShowReport();
 		}
 
 		internal void Keyboard(object sender, KeyEventArgs e)
@@ -223,8 +229,8 @@ namespace MaintJournal.ViewModels
 			View.FilterEventListBox.Items.Clear();
 
 			//Add predefined items
-			View.FilterEventListBox.Items.Add(new TextBlock() 
-			{ 
+			View.FilterEventListBox.Items.Add(new TextBlock()
+			{
 				Text = "< all >",
 				FontStyle = FontStyles.Italic,
 			});
