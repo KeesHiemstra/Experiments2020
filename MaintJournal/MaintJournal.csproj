@@ -76,17 +76,14 @@
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\Journal.cs" />
     <Compile Include="Models\JournalDbContext.cs" />
-    <Compile Include="ViewModels\LogRecordViewModel.cs" />
-    <Compile Include="Views\LogRecordWindow.cs">
-      <DependentUpon>LogRecordWindow.xaml</DependentUpon>
+    <Compile Include="Models\OpenedArticles.cs" />
+    <Compile Include="ViewModels\OpenedArticlesViewModel.cs" />
+    <Compile Include="Views\OpenedArticlesWindow.xaml.cs">
+      <DependentUpon>OpenedArticlesWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OptionsWindow.xaml.cs">
       <DependentUpon>OptionsWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="Views\LogRecordWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -101,6 +98,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\OpenedArticlesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\OptionsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
