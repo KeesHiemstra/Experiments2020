@@ -10,11 +10,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data.Entity;
-using System.Dynamic;
+using System.Data.Entity.Core.Mapping;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -26,21 +24,19 @@ namespace MaintJournal.ViewModels
 
 		#region [ Fields ]
 
+		private JournalDbContext db;
 		public MainWindow View;
 
 		#endregion
 
 		#region [ Properties ]
 
+		public JournalDbContext Db { get => db; set => db = value; }
 		public OptionsViewModel Options { get; set; }
 		public ObservableCollection<Journal> Journals { get; set; } = new ObservableCollection<Journal>();
 		public ObservableCollection<Journal> Filtered { get; set; } = new ObservableCollection<Journal>();
-		//		public List<string> JournalEvents = new List<string>();
 
-		public int JournalsCount
-		{
-			get => Journals.Count;
-		}
+		public int JournalsCount { get => Journals.Count;	}
 
 		#endregion
 
@@ -63,10 +59,49 @@ namespace MaintJournal.ViewModels
 
 		public event PropertyChangedEventHandler PropertyChanged;
 
+		public void GetJournals(bool IsRefresh = false, bool IsManual = false)
+		{
+			//Use the database
+			Db = new JournalDbContext(Options.DbConnection);
+
+			//Prepare the collection
+			List<Journal> journals = (from j in Db.Journals
+																orderby j.DTStart descending, j.DTCreation descending
+																select j).ToList();
+
+			//Get the collection
+			Journals = new ObservableCollection<Journal>(journals);
+			if (IsRefresh)
+			{
+				if (IsManual)
+				{
+					Log.Write($"Manually refreshed Journal table");
+				}
+				else
+				{
+					Log.Write($"Refreshed Journal table");
+				}
+			}
+			else
+			{
+				Log.Write($"Loaded Journal table");
+			}
+		}
+
+		public void EditRecord(int? logId)
+		{
+			JournalViewModel journalVM = new JournalViewModel(this);
+			journalVM.ShowJournal(logId);
+		}
+
 		#endregion
 
-		private void NotifyPropertyChanged(string propertyName = "") =>
+		private void NotifyPropertyChanged(string propertyName = "")
+		{
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+			Log.Write("Notification from MainViewModel");
+			GetJournals(true);
+		}
 
 		private void OpenOptions()
 		{
@@ -125,6 +160,15 @@ namespace MaintJournal.ViewModels
 				"Backup",
 				MessageBoxButton.OK,
 				MessageBoxImage.Information);
+		}
+
+		internal void DoubleClickDataGrid(object sender, MouseButtonEventArgs e)
+		{
+			if (sender == null) { return; }
+			foreach (Journal item in ((DataGrid)e.Source).SelectedItems)
+			{
+				EditRecord(item.LogID);
+			}
 		}
 
 		internal void ReportOpenedArticles()
@@ -207,21 +251,6 @@ namespace MaintJournal.ViewModels
 			GetJournals();
 			View.MainDataGrid.ItemsSource = Journals;
 			Log.Write($"Connection is changed to {Options.DbName}");
-		}
-
-		private void GetJournals()
-		{
-			//Use the table
-			using JournalDbContext db = new JournalDbContext(Options.DbConnection);
-
-			//Prepare the collection
-			List<Journal> journals = (from j in db.Journals
-																orderby j.DTStart descending, j.DTCreation descending
-																select j).ToList();
-
-			//Get the collection
-			Journals = new ObservableCollection<Journal>(journals);
-			Log.Write("Loaded Journal table");
 		}
 
 		private void GetJournalEvents()

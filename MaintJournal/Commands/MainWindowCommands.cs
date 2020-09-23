@@ -44,5 +44,28 @@ namespace MaintJournal.Commands
 				typeof(MainWindowCommands),
 				new InputGestureCollection() { }
 			);
+
+		public static readonly RoutedUICommand RefreshJournals = new RoutedUICommand
+			(
+				"_Refresh",
+				"RefreshJournals",
+				typeof(MainWindowCommands),
+				new InputGestureCollection()
+				{
+					new KeyGesture(Key.R, ModifierKeys.Control)
+				}
+			);
+
+		public static readonly RoutedUICommand NewRecord = new RoutedUICommand
+			(
+				"_New",
+				"NewRecord",
+				typeof(MainWindowCommands),
+				new InputGestureCollection()
+				{
+					new KeyGesture(Key.N, ModifierKeys.Control)
+				}
+			);
+
 	}
 }

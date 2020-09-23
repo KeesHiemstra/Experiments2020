@@ -77,13 +77,21 @@
     <Compile Include="Models\Journal.cs" />
     <Compile Include="Models\JournalDbContext.cs" />
     <Compile Include="Models\OpenedArticles.cs" />
+    <Compile Include="ViewModels\JournalViewModel.cs" />
     <Compile Include="ViewModels\OpenedArticlesViewModel.cs" />
+    <Compile Include="Views\JournalWindow.xaml.cs">
+      <DependentUpon>JournalWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\OpenedArticlesWindow.xaml.cs">
       <DependentUpon>OpenedArticlesWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OptionsWindow.xaml.cs">
       <DependentUpon>OptionsWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\JournalWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

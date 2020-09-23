@@ -72,6 +72,36 @@ namespace MaintJournal
 		}
 		#endregion
 
+		#region RefreshJournals
+
+		private void RefreshJournals_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+		{
+			e.CanExecute = VM.Journals
+				.Count() > 0;
+		}
+
+		private void RefreshJournals_Execute(object sender, ExecutedRoutedEventArgs e)
+		{
+			FilterMessageTextBox.Focus();
+			VM.GetJournals(true, true);
+		}
+
+		#endregion
+
+		#region NewRecord
+
+		private void NewRecordCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+		{
+			e.CanExecute = true;
+		}
+
+		private void NewRecordCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+		{
+			VM.EditRecord(null);
+		}
+
+		#endregion
+
 		#region ReportOpenedArticles
 
 		private void CommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -115,6 +145,11 @@ namespace MaintJournal
 		private void FilterBorden_KeyUp(object sender, KeyEventArgs e)
 		{
 			VM.Keyboard(sender, e);
+		}
+
+		private void MainDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+		{
+			VM.DoubleClickDataGrid(sender, e);
 		}
 	}
 }
