@@ -33,8 +33,12 @@
                             Binding="{Binding Days}"/>
         <DataGridTextColumn Header="Cups"
                             Binding="{Binding Cups}"/>
-        <DataGridTextColumn Header="Cups/day"
+        <DataGridTextColumn Header="G"
                             Binding="{Binding CupsPerDay, StringFormat=0.0}"/>
+        <DataGridTextColumn Header="N"
+                            Binding="{Binding CupsMin, StringFormat=0}"/>
+        <DataGridTextColumn Header="X"
+                            Binding="{Binding CupsMax, StringFormat=0}"/>
       </DataGrid.Columns>
     </DataGrid>
 

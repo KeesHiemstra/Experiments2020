@@ -1,4 +1,7 @@
-﻿Version 1.0.3.4 (2020-09-24)
+﻿Version 1.0.3.5 (2020-09-24)
+* Extended report 'Coffee usage' with min and max.
+
+Version 1.0.3.4 (2020-09-24)
 * Added report 'Coffee usage'.
 
 Version 1.0.2.3 (2020-09-23)

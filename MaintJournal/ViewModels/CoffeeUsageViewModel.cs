@@ -4,8 +4,6 @@ using MaintJournal.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MaintJournal.ViewModels
 {
@@ -61,7 +59,7 @@ namespace MaintJournal.ViewModels
 
 			Report = new List<CoffeeUsage>();
 
-			if ((DateTime.Now - articles.First().DTStart.Value).TotalDays > 2)
+			if ((DateTime.Now - articles.First().DTStart.Value).TotalDays > 1)
 			{
 				Report.Add(new CoffeeUsage
 				{
@@ -82,13 +80,18 @@ namespace MaintJournal.ViewModels
 
 			foreach (CoffeeUsage coffee in Report)
 			{
-				coffee.Cups = VM.Journals
-					.Where(x => x.DTStart <= coffee.Opened && x.DTStart > coffee.LastOpened && x.Event == "Kop koffie")
-					.Sum(x => int.Parse(x.Message));
+				var query = VM.Journals
+					.Where(x => x.DTStart <= coffee.Opened && x.DTStart > coffee.LastOpened && x.Event == "Kop koffie");
+
+				coffee.Cups = query.Sum(x => int.Parse(x.Message));
 				coffee.ActualDays = VM.Journals
 					.Where(x => x.DTStart <= coffee.Opened && x.DTStart > coffee.LastOpened && x.Event == "Kop koffie")
 					.GroupBy(date => date.DTStart.Value.Date).Count();
 				coffee.CupsPerDay = (decimal)coffee.Cups / coffee.ActualDays;
+				coffee.CupsMin = query
+					.GroupBy(date => date.DTStart.Value.Date).Min(x => x.Sum(x => int.Parse(x.Message)));
+				coffee.CupsMax = query
+					.GroupBy(date => date.DTStart.Value.Date).Max(x => x.Sum(x => int.Parse(x.Message)));
 			}
 
 			View.ReportDataGrid.ItemsSource = Report;

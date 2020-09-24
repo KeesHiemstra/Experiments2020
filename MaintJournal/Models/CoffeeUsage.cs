@@ -17,5 +17,7 @@ namespace MaintJournal.Models
 		public int Cups { get; set; }
 		public int ActualDays { get; set; }
 		public decimal CupsPerDay { get; set; }
+		public int CupsMin { get; set; }
+		public int CupsMax { get; set; }
 	}
 }
