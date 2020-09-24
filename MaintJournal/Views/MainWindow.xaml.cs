@@ -104,15 +104,32 @@ namespace MaintJournal
 
 		#region ReportOpenedArticles
 
-		private void CommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+		private void ReportOpenedArticlesCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
 		{
 			e.CanExecute = VM.Journals
 				.Count(x => x.Event == "Aangebroken") > 0;
 		}
 
-		private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+		private void ReportOpenedArticlesCommand_Executed(object sender, ExecutedRoutedEventArgs e)
 		{
 			VM.ReportOpenedArticles();
+		}
+
+		#endregion
+
+		#region ReportCoffeeUsage
+
+		private void ReportCoffeeUsageCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+		{
+			e.CanExecute = (VM.Journals
+				.Count(x => x.Event == "Aangebroken") > 0) &&
+				(VM.Journals
+					.Count(x => x.Event == "Kop koffie") > 0);
+		}
+
+		private void ReportCoffeeUsageCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+		{
+			VM.ReportCoffeeUsage();
 		}
 
 		#endregion
@@ -151,5 +168,6 @@ namespace MaintJournal
 		{
 			VM.DoubleClickDataGrid(sender, e);
 		}
+
 	}
 }

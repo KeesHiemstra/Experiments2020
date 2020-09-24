@@ -177,6 +177,11 @@ namespace MaintJournal.ViewModels
 			report.ShowReport();
 		}
 
+		internal void ReportCoffeeUsage()
+		{
+			throw new NotImplementedException();
+		}
+
 		internal void Keyboard(object sender, KeyEventArgs e)
 		{
 			if (sender == null) { return; }

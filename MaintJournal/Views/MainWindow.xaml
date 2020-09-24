@@ -35,9 +35,13 @@
       Command="cmd:MainWindowCommands.NewRecord"
       Executed="NewRecordCommand_Executed" />
     <CommandBinding
-      CanExecute="CommandBinding_CanExecute"
+      CanExecute="ReportOpenedArticlesCommand_CanExecute"
       Command="cmd:MainWindowCommands.ReportOpenedArticles"
-      Executed="CommandBinding_Executed" />
+      Executed="ReportOpenedArticlesCommand_Executed" />
+    <CommandBinding
+      CanExecute="ReportCoffeeUsageCommand_CanExecute"
+      Command="cmd:MainWindowCommands.ReportCoffeeUsage"
+      Executed="ReportCoffeeUsageCommand_Executed" />
   </Window.CommandBindings>
 
   <Grid>
@@ -68,6 +72,7 @@
 
       <MenuItem Header="_Reports">
         <MenuItem Command="cmd:MainWindowCommands.ReportOpenedArticles" />
+        <MenuItem Command="cmd:MainWindowCommands.ReportCoffeeUsage" />
       </MenuItem>
     </Menu>
 

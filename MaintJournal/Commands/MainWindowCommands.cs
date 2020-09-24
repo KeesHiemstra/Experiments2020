@@ -37,14 +37,6 @@ namespace MaintJournal.Commands
 				}
 			);
 
-		public static readonly RoutedUICommand ReportOpenedArticles = new RoutedUICommand
-			(
-				"_Opened articles",
-				"ReportOpenedArticles",
-				typeof(MainWindowCommands),
-				new InputGestureCollection() { }
-			);
-
 		public static readonly RoutedUICommand RefreshJournals = new RoutedUICommand
 			(
 				"_Refresh",
@@ -65,6 +57,22 @@ namespace MaintJournal.Commands
 				{
 					new KeyGesture(Key.N, ModifierKeys.Control)
 				}
+			);
+
+		public static readonly RoutedUICommand ReportOpenedArticles = new RoutedUICommand
+			(
+				"_Opened articles",
+				"ReportOpenedArticles",
+				typeof(MainWindowCommands),
+				new InputGestureCollection() { }
+			);
+
+		public static readonly RoutedUICommand ReportCoffeeUsage = new RoutedUICommand
+			(
+				"_Cofffe usage",
+				"ReportCoffeeUsage",
+				typeof(MainWindowCommands),
+				new InputGestureCollection() { }
 			);
 
 	}
