@@ -114,6 +114,8 @@ namespace MaintJournal.ViewModels
 			}
 		}
 
+		#region Backup()
+
 		internal void Backup()
 		{
 			if (!Directory.Exists(Options.BackupPath.TranslatePath()))
@@ -162,6 +164,8 @@ namespace MaintJournal.ViewModels
 				MessageBoxImage.Information);
 		}
 
+		#endregion
+
 		internal void DoubleClickDataGrid(object sender, MouseButtonEventArgs e)
 		{
 			if (sender == null) { return; }
@@ -179,7 +183,8 @@ namespace MaintJournal.ViewModels
 
 		internal void ReportCoffeeUsage()
 		{
-			throw new NotImplementedException();
+			CoffeeUsageViewModel report = new CoffeeUsageViewModel(this);
+			report.ShowReport();
 		}
 
 		internal void Keyboard(object sender, KeyEventArgs e)

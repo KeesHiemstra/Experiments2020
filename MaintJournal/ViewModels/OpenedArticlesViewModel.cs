@@ -14,8 +14,8 @@ namespace MaintJournal.ViewModels
 
 		#region [ Fields ]
 
-		readonly MainViewModel VM;
-		OpenedArticlesWindow View;
+		private readonly MainViewModel VM;
+		private OpenedArticlesWindow View;
 
 		#endregion
 
