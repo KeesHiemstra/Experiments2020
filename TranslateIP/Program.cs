@@ -10,7 +10,7 @@ namespace TranslateIP
   {
     static void Main(string[] args)
     {
-      Console.WriteLine(TranslateToIP("53a2eda8"));
+      Console.WriteLine(TranslateToIP("0543d691"));
 
       Console.Write("\nPress any key...");
       Console.ReadKey();
